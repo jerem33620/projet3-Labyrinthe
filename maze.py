@@ -65,11 +65,11 @@ LEVEL = Level('Level.txt')
 LEVEL.generate()
 LEVEL.display(WINDOW)
 MAC = Char(CHAR_IMG, LEVEL)
-TUBE = loot(TUBEIMG, LEVEL)
+TUBE = Loot(TUBEIMG, LEVEL)
 TUBE.display(TUBEIMG, WINDOW)
-NEEDLE = loot(NEEDLEIMG, LEVEL)
+NEEDLE = Loot(NEEDLEIMG, LEVEL)
 NEEDLE.display(NEEDLEIMG, WINDOW)
-ETHER = loot(ETHERIMG, LEVEL)
+ETHER = Loot(ETHERIMG, LEVEL)
 ETHER.display(ETHERIMG, WINDOW)
 
 
@@ -98,25 +98,25 @@ while CONTINUE_GAME:
     WINDOW.blit(BACKGROUND_TILES, (0, 30))
     # the background is streched from below the black margin to the opposite corner
     LEVEL.display(WINDOW)
-    WINDOW.blit(MAC.Image, (MAC.x, MAC.y))
+    WINDOW.blit(MAC.image, (MAC.x_values, MAC.y_values))
 
     if TUBENOTPICKED:
-        WINDOW.blit(TUBE.Loot_Image, (TUBE.x, TUBE.y))
-    if (MAC.x, MAC.y) == (TUBE.x, TUBE.y):
+        WINDOW.blit(TUBE.Loot_Image, (TUBE.x_values, TUBE.y_values))
+    if (MAC.x_values, MAC.y_values) == (TUBE.x_values, TUBE.y_values):
         TUBENOTPICKED = False
         WINDOW.blit(TUBE.Loot_Image, (0, 0))
 
 
     if NEEDLENOTPICKED:
-        WINDOW.blit(NEEDLE.Loot_Image, (NEEDLE.x, NEEDLE.y))
-    if (MAC.x, MAC.y) == (NEEDLE.x, NEEDLE.y):
+        WINDOW.blit(NEEDLE.Loot_Image, (NEEDLE.x_values, NEEDLE.y_values))
+    if (MAC.x_values, MAC.y_values) == (NEEDLE.x_values, NEEDLE.y_values):
         NEEDLENOTPICKED = False
         WINDOW.blit(NEEDLE.Loot_Image, (10, 0))
 
 
     if ETHERNOTPICKED:
-        WINDOW.blit(ETHER.Loot_Image, (ETHER.x, ETHER.y))
-    if (MAC.x, MAC.y) == (ETHER.x, ETHER.y):
+        WINDOW.blit(ETHER.Loot_Image, (ETHER.x_values, ETHER.y_values))
+    if (MAC.x_values, MAC.y_values) == (ETHER.x_values, ETHER.y_values):
         ETHERNOTPICKED = False
         WINDOW.blit(ETHER.Loot_Image, (30, 0))
 
@@ -137,7 +137,7 @@ while CONTINUE_GAME:
     if GAME_WON is True:
         WINDOW.blit(BACKGROUND_TILES, (0, 30))
         # draw over everything on the screen now by re-drawing the background
-        FONT = pygame.FONT.Font(None, 25)
+        FONT = pygame.font.Font(None, 25)
         TEXT = FONT.render("You won ! MacGyver is safe thanks to you !", 1, (255, 255, 255))
         # Display the text in white with rounded edge
         TEXTRECT = TEXT.get_rect()
@@ -149,7 +149,7 @@ while CONTINUE_GAME:
     if GAME_LOOSE is True:
         WINDOW.blit(BACKGROUND_TILES, (0, 30))
         # draw over everything on the screen now by re-drawing the background
-        FONT = pygame.FONT.Font(None, 25)
+        FONT = pygame.font.Font(None, 25)
         TEXT = FONT.render("Game over! You just died.", 1, (255, 255, 255))
         # Display the text in white with rounded edge
         TEXTRECT = TEXT.get_rect()
