@@ -11,12 +11,9 @@ so he can put to sleep the guard at the exit !
 
 # Import of the libraries needed
 import pygame
-
-from constantes import *
-
-from classes import *
-
 from pygame.locals import *
+from constantes import *
+from classes import *
 
 # Init of the Pygame library
 pygame.init()
@@ -24,7 +21,6 @@ pygame.init()
 # Displaying the windows
 WINDOW = pygame.display.set_mode((WINDOW_SIZE, 480))
 # setting the height to 480 so we have an upper black margin
-
 # Icone
 ICONE = pygame.image.load(MAC_GYVER).convert_alpha()
 pygame.display.set_icon(ICONE)
@@ -34,10 +30,8 @@ pygame.display.set_caption(WINDOW_TITLE)
 
 # displaying a background for the tile of the maze
 BACKGROUND_TILES = pygame.image.load(BACKGROUND).convert()
-
 WINDOW.blit(BACKGROUND_TILES, (30, 30))
 # the background is streched from below the black margin to the opposite corner
-
 
 # displaying the character .png
 CHAR_IMG = pygame.image.load(MAC_GYVER).convert_alpha()  # Add the png and transparency
@@ -82,15 +76,15 @@ ETHER.display(ETHERIMG, WINDOW)
 # infinite loop
 while CONTINUE_GAME:
 
-    pygame.time.Clock().tick(30)  #Limiting the loop speed to 30f/s to save processor ressources
+    pygame.time.Clock().tick(30)  # Limiting the loop speed to 30f/s to save processor ressources
 
-    for event in pygame.event.get(): #Seeking every events happening while the game is running
+    for event in pygame.event.get():    #Seeking every events happening while the game is running
         if event.type == quit:  # If any of these events is QUIT type
             CONTINUE_GAME = 0   # Loop is stopped and the game windows is closed
 
         # Keyboard touch used to moove MacGyver:
         elif event.type == KEYDOWN:
-            if event.key == K_DOWN: #if ARROW DOWN pressed
+            if event.key == K_DOWN:  # If ARROW DOWN pressed
                 MAC.mooving('down')
             elif event.key == K_UP:
                 MAC.mooving('up')
@@ -98,6 +92,7 @@ while CONTINUE_GAME:
                 MAC.mooving('left')
             elif event.key == K_RIGHT:
                 MAC.mooving('right')
+
 
     # Re-pasting after the events
     WINDOW.blit(BACKGROUND_TILES, (0, 30))
@@ -142,7 +137,7 @@ while CONTINUE_GAME:
     if GAME_WON is True:
         WINDOW.blit(BACKGROUND_TILES, (0, 30))
         # draw over everything on the screen now by re-drawing the background
-        FONT = pygame.font.Font(None, 25)
+        FONT = pygame.FONT.Font(None, 25)
         TEXT = FONT.render("You won ! MacGyver is safe thanks to you !", 1, (255, 255, 255))
         # Display the text in white with rounded edge
         TEXTRECT = TEXT.get_rect()
@@ -154,7 +149,7 @@ while CONTINUE_GAME:
     if GAME_LOOSE is True:
         WINDOW.blit(BACKGROUND_TILES, (0, 30))
         # draw over everything on the screen now by re-drawing the background
-        FONT = pygame.font.Font(None, 25)
+        FONT = pygame.FONT.Font(None, 25)
         TEXT = FONT.render("Game over! You just died.", 1, (255, 255, 255))
         # Display the text in white with rounded edge
         TEXTRECT = TEXT.get_rect()
